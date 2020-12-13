@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setListeners()
+
     }
 
     private fun makeColored(view: View, list :List<(View)->Unit>){
@@ -44,16 +46,22 @@ class MainActivity : AppCompatActivity() {
         val boxFiveTextView : TextView = findViewById(R.id.box_five_text)
         val rootConstraintLayout: View = findViewById(R.id.constraint_layout)
 
+        val redButton = findViewById<Button>(R.id.red_button)
+        val greenButton : Button = findViewById(R.id.green_button)
+        val yellowButton: Button = findViewById(R.id.yellow_button)
+
         val clickableViews: List<View> =
             listOf(boxOneText, boxTwoTextView, boxThreeTextView, boxFourTextView,
-                boxFiveTextView, rootConstraintLayout)
+                boxFiveTextView, rootConstraintLayout, redButton, yellowButton, greenButton)
 
         val listOfListOfFunctions : List<List<(View)->Unit>> = listOf(listOf<(View) -> Unit>({ it.setBackgroundResource(R.drawable.ic_baseline_accessible_forward_24) },
             {it.setBackgroundColor(Color.YELLOW)},{ it.setBackgroundColor(Color.DKGRAY) }), listOf<(View)->Unit>({it.setBackgroundColor(Color.BLUE)}, {it.setBackgroundColor(Color.BLACK)},
             {it.setBackgroundResource(R.drawable.ic_baseline_add_reaction_24)}), listOf<(View)->Unit>( {it.setBackgroundColor(Color.GRAY)}, {it.setBackgroundColor(Color.CYAN)},
             {it.setBackgroundResource(R.drawable.ic_baseline_adb_24)}  ), listOf<(View)->Unit>({it.setBackgroundColor(Color.MAGENTA)},
             {it.setBackgroundColor(Color.GREEN)}, {it.setBackgroundResource(R.drawable.ic_baseline_speaker_24)}), listOf({it.setBackgroundColor(Color.BLUE)}, {it.setBackgroundColor(Color.RED)},
-            {it.setBackgroundResource(R.drawable.ic_baseline_arrow_right_alt_24)}), listOf({it.setBackgroundColor(Color.LTGRAY)}, {it.setBackgroundColor(Color.CYAN)}))
+            {it.setBackgroundResource(R.drawable.ic_baseline_arrow_right_alt_24)}), listOf({it.setBackgroundColor(Color.LTGRAY)}, {it.setBackgroundColor(Color.CYAN)}),
+            listOf { boxThreeTextView.setBackgroundResource(R.color.my_red) }, listOf{boxFourTextView.setBackgroundResource(R.color.my_yellow)},
+        listOf{boxFiveTextView.setBackgroundResource(R.color.my_green)})
 
         for ((i, view) in clickableViews.withIndex()){
 
